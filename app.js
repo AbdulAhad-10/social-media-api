@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import errorMiddleware from "./middleware/error.middleware.js";
 import uploadRouter from "./routes/upload.routes.js";
 import postRouter from "./routes/post.routes.js";
+import userRouter from "./routes/user.routes.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(cookieParser());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1//upload", uploadRouter);
 app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/users", userRouter);
 
 app.use(errorMiddleware);
 

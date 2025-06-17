@@ -1,25 +1,23 @@
 import { Router } from "express";
+import {
+  createPost,
+  deletePost,
+  getPostById,
+  getPosts,
+  updatePost,
+} from "../controllers/post.controller.js";
+import authorize from "../middleware/auth.middleware.js";
 
 const postRouter = Router();
 
-postRouter.get("/", (req, res) => {
-  res.send("List of posts");
-});
+postRouter.get("/", getPosts);
 
-postRouter.post("/", (req, res) => {
-  res.send("Post created");
-});
+postRouter.post("/", authorize, createPost);
 
-postRouter.get("/:id", (req, res) => {
-  res.send(`Details of post with ID: ${req.params.id}`);
-});
+postRouter.get("/:id", getPostById);
 
-postRouter.put("/:id", (req, res) => {
-  res.send(`Post with ID: ${req.params.id} updated`);
-});
+postRouter.put("/:id", authorize, updatePost);
 
-postRouter.delete("/:id", (req, res) => {
-  res.send(`Post with ID: ${req.params.id} deleted`);
-});
+postRouter.delete("/:id", authorize, deletePost);
 
 export default postRouter;
