@@ -57,9 +57,7 @@ export const getUserPosts = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      data: {
-        posts,
-      },
+      data: posts,
     });
   } catch (error) {
     return next(error);
