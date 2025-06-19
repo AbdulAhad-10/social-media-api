@@ -26,14 +26,11 @@ export const getPosts = async (req, res, next) => {
       order = "desc",
     } = req.query;
 
-    // Calculate pagination
     const skip = (parseInt(page) - 1) * parseInt(limit);
 
-    // Build sort object
     const sortOrder = order === "asc" ? 1 : -1;
     const sortObj = { [sort]: sortOrder };
 
-    // Get blogs with pagination
     const posts = await Post.find({})
       .populate("userId", "name email profilePicture")
       .sort(sortObj)
@@ -41,7 +38,6 @@ export const getPosts = async (req, res, next) => {
       .limit(parseInt(limit))
       .select("-__v");
 
-    // Get total count for pagination info
     const totalPosts = await Post.countDocuments({});
     const totalPages = Math.ceil(totalPosts / parseInt(limit));
     const hasNextPage = parseInt(page) < totalPages;
