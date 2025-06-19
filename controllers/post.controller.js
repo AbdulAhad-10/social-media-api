@@ -34,7 +34,7 @@ export const getPosts = async (req, res, next) => {
     const sortObj = { [sort]: sortOrder };
 
     // Get blogs with pagination
-    const blogs = await Post.find({})
+    const posts = await Post.find({})
       .populate("userId", "name email profilePicture")
       .sort(sortObj)
       .skip(skip)
@@ -50,7 +50,7 @@ export const getPosts = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: {
-        blogs,
+        posts,
         pagination: {
           currentPage: parseInt(page),
           totalPages,
