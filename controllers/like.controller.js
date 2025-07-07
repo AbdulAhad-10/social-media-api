@@ -1,6 +1,7 @@
-import Post from "../models/Post.js";
-import Like from "../models/Like.js";
+
 import mongoose from "mongoose";
+import Post from "../models/post.model.js";
+import Like from "../models/like.model.js";
 
 export const toggleLike = async (req, res, next) => {
   const session = await mongoose.startSession();
