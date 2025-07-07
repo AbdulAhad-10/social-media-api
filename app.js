@@ -8,6 +8,7 @@ import uploadRouter from "./routes/upload.routes.js";
 import postRouter from "./routes/post.routes.js";
 import userRouter from "./routes/user.routes.js";
 import likeRouter from "./routes/like.routes.js";
+import commentRouter from "./routes/comment.routes.js";
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use("/api/v1//upload", uploadRouter);
 app.use("/api/v1/posts", postRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/likes", likeRouter);
+app.use("/api/v1/comments", commentRouter);
 
 app.use(errorMiddleware);
 

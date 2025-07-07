@@ -4,7 +4,7 @@ import authorize from "../middleware/auth.middleware.js";
 
 const likeRouter = Router();
 
-likeRouter.post("/:postId/toggle-like", authorize, toggleLike);
-likeRouter.get("/:postId/likes", getPostLikes);
+likeRouter.post("/:postId", authorize, toggleLike);
+likeRouter.get("/:postId", getPostLikes);
 
 export default likeRouter;
