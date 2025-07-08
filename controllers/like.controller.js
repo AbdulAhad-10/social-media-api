@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 import Post from "../models/post.model.js";
 import Like from "../models/like.model.js";
@@ -77,7 +76,6 @@ export const toggleLike = async (req, res, next) => {
 export const getPostLikes = async (req, res, next) => {
   try {
     const { postId } = req.params;
-    const { page = 1, limit = 20 } = req.query;
 
     const post = await Post.findById(postId);
     if (!post) {
@@ -88,11 +86,7 @@ export const getPostLikes = async (req, res, next) => {
 
     const likes = await Like.find({ postId })
       .populate("userId", "name profilePicture")
-      .sort({ createdAt: -1 })
-      .limit(limit * 1)
-      .skip((page - 1) * limit);
-
-    const total = await Like.countDocuments({ postId });
+      .sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,
@@ -102,12 +96,6 @@ export const getPostLikes = async (req, res, next) => {
           user: like.userId,
           likedAt: like.createdAt,
         })),
-        pagination: {
-          page: parseInt(page),
-          limit: parseInt(limit),
-          total,
-          pages: Math.ceil(total / limit),
-        },
       },
     });
   } catch (error) {
