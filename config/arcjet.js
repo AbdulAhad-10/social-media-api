@@ -11,7 +11,7 @@ const aj = arcjet({
 
     detectBot({
       mode: "LIVE",
-      allow: ["CATEGORY:SEARCH_ENGINE", "POSTMAN"],
+      allow: ["CATEGORY:SEARCH_ENGINE", "POSTMAN", "CATEGORY:MONITOR", "VERCEL_CRAWLER"],
     }),
 
     tokenBucket({
