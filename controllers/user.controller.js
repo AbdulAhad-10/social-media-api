@@ -1,6 +1,18 @@
 import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
 
+export const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find().select("-password -__v");
+    res.status(200).json({
+      success: true,
+      data: users,
+    });
+  } catch (error) {
+    return next(error);
+  }
+}
+
 export const getUserDetails = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).select("-password -__v");
