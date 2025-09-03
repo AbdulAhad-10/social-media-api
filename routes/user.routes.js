@@ -9,7 +9,7 @@ import {
 
 const userRouter = Router();
 
-userRouter.get("/", getAllUsers);
+userRouter.get("/", authorize, getAllUsers);
 
 userRouter.get("/me", authorize, getUserDetails);
 

@@ -2,8 +2,9 @@ import Post from "../models/post.model.js";
 import User from "../models/user.model.js";
 
 export const getAllUsers = async (req, res, next) => {
+  const me = req.user;
   try {
-    const users = await User.find().select("-password -__v");
+    const users = await User.find({ _id: { $ne: me._id } }).select("-password -__v");
     res.status(200).json({
       success: true,
       data: users,
